@@ -1,0 +1,12 @@
+# Normalize line endings per repository rules; C++ sources use CRLF on Windows.
+* text=auto eol=crlf
+
+# Locked binary artifacts.
+*.pdb binary
+*.dll binary
+*.exe binary
+*.sys binary
+*.lib binary
+*.obj binary
+*.cat binary
+*.inf text

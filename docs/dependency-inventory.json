@@ -1,0 +1,92 @@
+[
+    {
+        "name": "MSVC",
+        "provider": "Microsoft",
+        "version": "14.44.35207",
+        "howPinned": "installed toolchain, VS 2022 BuildTools 17.14.31",
+        "purpose": "C++20 compiler",
+        "license": "Proprietary (Visual Studio license; personal/individual use acceptable for this project)",
+        "updatePolicy": "op in Phase 12 maintenance matrix; not auto-promoted"
+    },
+    {
+        "name": "Windows SDK",
+        "provider": "Microsoft",
+        "version": "10.0.26100.0",
+        "howPinned": "installed SDK",
+        "purpose": "Windows API headers/libs",
+        "license": "Microsoft Windows SDK EULA",
+        "updatePolicy": "op in Phase 12 maintenance matrix"
+    },
+    {
+        "name": "Windows Driver Kit (WDK)",
+        "provider": "Microsoft",
+        "version": "10.0.26100.6584",
+        "howPinned": "optional; not required to build the user-mode application. When developing the optional kernel driver, install a WDK that matches the installed Windows SDK build numbers on a dedicated test machine.",
+        "purpose": "optional kernel driver build",
+        "license": "Microsoft WDK EULA",
+        "updatePolicy": "re-verify WDK/SDK pairing on the test machine; re-pin if the VS2022 kit line moves"
+    },
+    {
+        "name": "CMake",
+        "provider": "Kitware / Microsoft",
+        "version": "3.31.6-msvc6",
+        "howPinned": "bundled with VS 2022 BuildTools; cmake_minimum_required 3.25",
+        "purpose": "build system",
+        "license": "BSD-3-Clause",
+        "updatePolicy": "pinned via CMakePresets minimum version"
+    },
+    {
+        "name": "GoogleTest (googletest)",
+        "provider": "Google",
+        "version": "v1.16.0",
+        "howPinned": "CMake FetchContent GIT_TAG v1.16.0 (shallow)",
+        "purpose": "unit-test runner (test-only dependency; never shipped)",
+        "license": "BSD-3-Clause (see third_party/notices/googletest.txt)",
+        "updatePolicy": "pinned tag; bump only with license/maintenance review"
+    },
+    {
+        "name": "Steinberg ASIO SDK",
+        "provider": "Steinberg Media Technologies",
+        "version": "2.3.x (user-provided archive)",
+        "howPinned": "not redistributed and not fetched automatically; the user downloads the SDK from Steinberg and points the AUDIENT_ASIO_SDK_DIR cache variable at its ASIOSDK directory. Not required for the simulated-driver backend.",
+        "purpose": "optional native ASIO driver provider/adapter; not required to build or run the simulated suite",
+        "license": "Steinberg ASIO SDK license (review before redistribution)",
+        "updatePolicy": "pin a specific downloaded archive hash once the SDK is acquired"
+    },
+    {
+        "name": "Steinberg VST3 SDK (post-2024 split repositories)",
+        "provider": "Steinberg Media Technologies",
+        "version": "pinned commits: vst3_pluginterfaces 4f547e8e102b47de4a8b8aaf343c73b700786372; vst3_base fcf9da0bd27a16f7f03773a3a39822f28f5c8477; vst3_public_sdk 586dc5e6c8012c3e4b01c79389375cbe96bdb1da",
+        "howPinned": "CMake FetchContent GIT_TAG commit hashes (shallow); synced into a superrepo-style include layout (pluginterfaces/, base/, public.sdk/) in the build tree",
+        "purpose": "VST3 interfaces + host; audient_vst3 compiles only the interface headers plus funknown.cpp/vstinitiids.cpp (no SDK source is vendored in this repository)",
+        "license": "MIT (verified against the pinned commits' LICENSE.txt: 'Copyright (c) 2026, Steinberg Media Technologies GmbH'; see third_party/notices/vst3.txt). Compatible with this project's MIT license.",
+        "updatePolicy": "bump pinned hashes only with a recorded reason; keep a rollback hash set"
+    },
+    {
+        "name": "Microsoft Windows Driver Samples - Simple Audio Sample Device Driver",
+        "provider": "Microsoft",
+        "version": "branch main, pinned by blob SHA (reference only)",
+        "howPinned": "reference only; not vendored and not built for the user-mode application. Files are pinned by blob SHA and would be adapted as the optional kernel-driver base on a dedicated WDK test machine.",
+        "purpose": "minimal virtual WDM WaveRT capture endpoint base (mic array + speaker, no hardware) for a future Windows virtual microphone endpoint",
+        "license": "MS-PL (Microsoft Public License, (c) 2015 Microsoft); derived source must retain Microsoft notices and be distributed under MS-PL (Section 3.C/D)",
+        "updatePolicy": "re-pin when the WDK/target revision is selected"
+    },
+    {
+        "name": "Microsoft.Web.WebView2",
+        "provider": "Microsoft",
+        "version": "1.0.4191.47",
+        "howPinned": "CMake FetchContent URL + SHA512 (nupkg): https://api.nuget.org/v3-flatcontainer/microsoft.web.webview2/1.0.4191.47/microsoft.web.webview2.1.0.4191.47.nupkg SHA512=adf91bda1a71d860c098cd0e426b5a238e187ea73c694832f8fde36809a9165fda8844fc9c2b9fc8a870b0da53cd9eb97ec140d9a2f104a228301ffae841db8c (cmake/CppDependencies.cmake:audient_add_webview2sdk; extracted to build/<preset>/_deps/webview2sdk-src; nothing vendored in-tree)",
+        "purpose": "Daily GUI presentation layer host (WebView2 SDK headers + WebView2LoaderStatic.lib); links only the static loader, so no WebView2Loader.dll is deployed",
+        "license": "Microsoft WebView2 SDK EULA (redistribution of the runtime loader permitted); runtime supplied by the separately installed Evergreen WebView2 Runtime",
+        "updatePolicy": "SDK version pinned by SHA512; bump only with a recorded reason and a re-verified hash. Runtime is the machine-installed Evergreen WebView2 Runtime (152.0.4191.66 at this baseline), which self-updates independently of the SDK pin"
+    },
+    {
+        "name": "UI framework",
+        "provider": "TBD",
+        "version": "WebView2 + HTML/TypeScript/Tailwind selected for the Daily GUI (2026-09-12); broader native UI framework decision still open",
+        "howPinned": "WebView2 SDK pinned via CMake FetchContent URL + SHA512 (see Microsoft.Web.WebView2 entry); frontend assets are local files under src/daily_gui/ui",
+        "purpose": "native console UI (Daily GUI presentation layer)",
+        "license": "TBD for the remaining native UI framework; WebView2 SDK under Microsoft EULA",
+        "updatePolicy": "TBD"
+    }
+]

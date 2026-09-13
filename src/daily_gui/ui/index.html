@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Audient Console</title>
+<link rel="stylesheet" href="app.css" />
+</head>
+<body>
+<div class="app" id="app">
+  <header class="topbar" id="topbar">
+   <div class="topbar-inner">
+    <div class="brand-block">
+      <span class="id-logo">iD</span>
+      <span class="brand-title">Audient Console</span>
+    </div>
+    <div class="status-caps">
+      <div class="cap"><span class="led" id="asioLed"></span><span id="capAsio">ASIO STREAMING</span></div>
+      <button type="button" class="cap cap-btn" id="capRate" title="Audio settings">-- kHz / -- SAMPLES</button>
+      <div class="cap" id="capXruns">XRUNS 0</div>
+      <div class="cap" id="capOvl">OVERLOADS 0</div>
+    </div>
+    <div class="top-right">
+      <div class="view-seg" id="viewSeg" role="radiogroup" aria-label="View mode">
+        <button type="button" class="view-btn active" data-view="main" role="radio" aria-checked="true">Main</button>
+        <button type="button" class="view-btn" data-view="mini" role="radio" aria-checked="false">Mini</button>
+      </div>
+      <button type="button" class="device-pill" id="deviceName" title="Audio device">ID14 MK1</button>
+      <button type="button" class="icon-btn" id="btnSettings" title="Settings" aria-label="Settings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </button>
+    </div>
+   </div>
+  </header>
+  <main class="main" id="main">
+    <section class="panel" id="panelCh0" aria-label="Channel 1"></section>
+    <section class="panel" id="panelCh1" aria-label="Channel 2"></section>
+    <section class="panel master" id="panelMaster" aria-label="Master"></section>
+  </main>
+  <main class="mini" id="mini" hidden></main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

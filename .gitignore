@@ -1,0 +1,73 @@
+# Build output
+build/
+out/
+dist/
+cmake-build-*/
+
+# Generated files (never commit machine-generated build metadata)
+*.generated
+generated/
+cmake/compile_commands.json
+compile_commands.json
+
+# Visual Studio / IDE
+.vs/
+.idea/
+.vscode/
+*.user
+*.suo
+*.VC.db
+*.VC.opendb
+*.opensdf
+*.sdf
+
+# Symbols / intermediate
+symbols/
+*.pdb
+*.ilk
+*.obj
+*.exp
+*.lib
+
+# Binaries / packages
+*.exe
+*.dll
+*.sys
+*.zip
+*.uf2
+
+# Test artifacts, dumps and captures
+*.dmp
+captures/
+test-artifacts/
+*.vststate
+
+# Runtime user state
+settings.json
+mixer-state.json
+State/
+WebView2/
+
+# Installer output and downloaded redistributables
+packaging/redist/
+
+# Certificates, secrets and machine-specific settings
+*.pfx
+*.p12
+*.cer
+*.crt
+*.key
+*.keystore
+local.properties
+*settings-local*
+CMakeUserPresets.json
+
+# Local SDK archives / paths
+ASIO-SDK_*.zip
+
+# Logs
+*.log
+crashdumps/
+
+# CTest temporary root
+Testing/

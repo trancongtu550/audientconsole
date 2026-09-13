@@ -1,0 +1,29 @@
+/*++
+
+Copyright (c) Microsoft Corporation All Rights Reserved
+
+Module Name:
+
+    AudientConsoleMic.rc
+
+Abstract:
+
+    Version resource for the Audient Console virtual microphone driver.
+    Derived from the Microsoft Simple Audio Sample (SimpleAudioSample.rc, MS-PL).
+
+--*/
+
+#include <windows.h>
+
+#include <ntverp.h>
+
+#define VER_FILETYPE                VFT_DRV
+#define VER_FILESUBTYPE             VFT2_DRV_SOUND
+#define VER_FILEDESCRIPTION_STR     "Audient Console Virtual Microphone Driver"
+#define VER_INTERNALNAME_STR        "AudientConsoleMic.sys"
+#define VER_ORIGINALFILENAME_STR    "AudientConsoleMic.sys"
+
+#define VER_LEGALCOPYRIGHT_YEARS    "2013"
+#define VER_LEGALCOPYRIGHT_STR	    "Copyright (C) Microsoft Corp." VER_LEGALCOPYRIGHT_YEARS
+
+#include "common.ver"

@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-test:
+    name: Build and test (Debug + Release)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure Debug
+        run: cmake --preset configure-debug
+
+      - name: Build Debug
+        run: cmake --build --preset build-debug
+
+      - name: Test Debug
+        run: ctest --preset test-debug
+
+      - name: Configure Release
+        run: cmake --preset configure-release
+
+      - name: Build Release
+        run: cmake --build --preset build-release
+
+      - name: Test Release
+        run: ctest --preset test-release
+
+      - name: Create release symbol archive
+        shell: pwsh
+        run: Compress-Archive -Path "build/configure-release/symbols/Release" -DestinationPath "release-symbols.zip" -Force
+
+      - name: Upload release symbols
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-symbols
+          path: release-symbols.zip
+          if-no-files-found: error
+
+  analyze:
+    name: MSVC static analysis (/analyze)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure Debug with static analysis
+        run: cmake --preset configure-debug -DAUDIENT_ENABLE_ANALYZE=ON
+
+      - name: Build (analyze)
+        run: cmake --build --preset build-debug
