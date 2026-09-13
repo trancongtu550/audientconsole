@@ -8,7 +8,7 @@ on:
 jobs:
   build-test:
     name: Build and test (Debug + Release)
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v4
 
@@ -43,7 +43,7 @@ jobs:
 
   analyze:
     name: MSVC static analysis (/analyze)
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v4
 
